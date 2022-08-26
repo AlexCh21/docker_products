@@ -20,15 +20,15 @@ jobs:
       run: |
           pip install -r requirements.txt
           
-image: docker:stable
+# image: docker:stable
 
- stages:
-  - Build image
-  - Push to Docker Hub
+#  stages:
+#   - Build image
+#   - Push to Docker Hub
 
- docker build:
-  stage: Build image
+#  docker build:
+#   stage: Build image
 
- script:
-  - docker info
-  - docker build -t myimage .
+#  script:
+#   - docker info
+#   - docker build -t myimage .
