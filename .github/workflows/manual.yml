@@ -2,13 +2,6 @@
 name: Manual workflow
 
 on: [ push ]
- # workflow_dispatch:
-
-#     inputs:
-#       name:
-#         description: 'Person to greet'
-#         default: 'World'
-#         required: true
 
 jobs:
   tests:
@@ -17,13 +10,25 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2 
-    - name: Send tests
-      run: echo "Hello ${{ github.event.inputs.name }}"
+#     - name: Send tests
+#       run: echo "Hello ${{ github.event.inputs.name }}"
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
     - name: Install dependencies
       run: |
-         # python -m pip install --upgrade pip
           pip install -r requirements.txt
+          
+image: docker:stable
+
+ stages:
+  - Build image
+  - Push to Docker Hub
+
+ docker build:
+  stage: Build image
+
+ script:
+  - docker info
+  - docker build -t myimage .
