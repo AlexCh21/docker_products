@@ -1,6 +1,11 @@
 
 name: Manual workflow
 
+defaults:
+  run:
+    shell: bash
+    working-directory: stocks_products
+
 on: [ push ]
 
 jobs:
@@ -8,11 +13,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: checkout code
       uses: actions/checkout@v2 
-#     - name: Send tests
-#       run: echo "Hello ${{ github.event.inputs.name }}"
-    - name: Set up Python
+    - name: Set up Python 3.9
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
@@ -20,15 +23,4 @@ jobs:
       run: |
           pip install -r requirements.txt
           
-# image: docker:stable
 
-#  stages:
-#   - Build image
-#   - Push to Docker Hub
-
-#  docker build:
-#   stage: Build image
-
-#  script:
-#   - docker info
-#   - docker build -t myimage .
